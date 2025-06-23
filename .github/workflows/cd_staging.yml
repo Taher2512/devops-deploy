@@ -14,6 +14,7 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
           mkdir -p ~/.ssh
           echo "${{ secrets.KNOWN_HOSTS }}" &> ~/.ssh/known_hosts
+          chmod 700 ~/ssh_key
           ssh -i ~/ssh_key ubuntu@65.2.82.128
           cd devops-deploy/ && git pull
           pnpm install
