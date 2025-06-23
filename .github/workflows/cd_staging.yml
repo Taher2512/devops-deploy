@@ -1,0 +1,19 @@
+name: Deploy to staging
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  redeploy_everything:
+    name: Deploying everything to staging cluster
+
+    steps:
+      - name: SSH into server
+      - run: |
+          echo ${{ secrets.SSH_PRIVATE_KEY }} &> ~/ssh_key
+          ssh -i ~/ssh_key ubuntu@65.2.82.128
+          cd devops-deploy/ && git pull
+          pnpm install
+          pnpm run build
+          pm2 restart all
