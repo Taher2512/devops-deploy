@@ -15,4 +15,4 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.KNOWN_HOSTS }}" &> ~/.ssh/known_hosts
           chmod 700 ~/ssh_key
-          ssh -i ~/ssh_key ubuntu@65.2.82.128 -t "cd devops-deploy/ && git pull origin main && export PATH=/root/.nvm/versions/node/v22.16.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin && npm install -g pnpm && pnpm install && pnpm run build && pm2 restart all"
+          ssh -i ~/ssh_key ubuntu@65.2.82.128 -t "cd devops-deploy/ && git pull origin main && export PATH=/home/ubuntu/.nvm/versions/node/v22.16.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin && npm install -g pnpm && pnpm install && pnpm run build && pm2 restart all"
