@@ -1,16 +1,16 @@
 name: Deploy to staging
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   redeploy_everything:
+    runs-on: ubuntu-latest
     name: Deploying everything to staging cluster
 
     steps:
       - name: SSH into server
-      - run: |
+        run: |
           echo ${{ secrets.SSH_PRIVATE_KEY }} &> ~/ssh_key
           ssh -i ~/ssh_key ubuntu@65.2.82.128
           cd devops-deploy/ && git pull
