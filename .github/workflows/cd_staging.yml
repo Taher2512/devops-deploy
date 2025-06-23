@@ -12,6 +12,7 @@ jobs:
       - name: SSH into server
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
+          mkdir .ssh
           echo "${{ secrets.KNOWN_HOSTS }}" &> ~/.ssh/known_hosts
           ssh -i ~/ssh_key ubuntu@65.2.82.128
           cd devops-deploy/ && git pull
